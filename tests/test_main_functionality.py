@@ -14,7 +14,7 @@ class TestBasicFunctionality:
         header.click_orders_feed_button()
         header.click_constructor_button()
 
-        with allure.step(f'Проверяем текущий url (URL = {main_page.current_url})'):
+        with allure.step(f'Проверяем переход на url {URLs.MAIN_PAGE})'):
             assert main_page.current_url == URLs.MAIN_PAGE, \
                 f'Ожидался переход на страницу {URLs.MAIN_PAGE}, но фактический URL: {main_page.current_url}'
 
@@ -24,9 +24,9 @@ class TestBasicFunctionality:
         main_page.open_main_page()
         header.click_orders_feed_button()
 
-        with allure.step(f'Проверяем текущий url (URL = {header.current_url})'):
-            assert header.current_url == order_feed_page.URL, \
-                f'Ожидался переход на страницу {order_feed_page.URL}, но фактический URL: {header.current_url}'
+        with allure.step(f'Проверяем переход на url = {URLs.order_feed_page})'):
+            assert header.current_url == URLs.order_feed_page, \
+                f'Ожидался переход на страницу {URLs.order_feed_page}, но фактический URL: {header.current_url}'
 
     @allure.title('Отображение деталей ингредиента')
     @allure.description('Проверка появления всплывающего окна с деталями при клике на ингредиент')
@@ -35,7 +35,7 @@ class TestBasicFunctionality:
         ingredient_name = main_page.get_ingredient_name_by_index_(0)
         main_page.click_on_ingredient_(0)
 
-        with allure.step(f'Проверяем открылось ли окно с деталями об ингредиенте ({ingredient_name})'):
+        with allure.step(f'Проверяем наличие окна с деталями об ингредиенте «{ingredient_name}»'):
             assert main_page.get_ingredient_name_in_details_window() == ingredient_name, \
                 (f'Ожидалось название ингредиента {ingredient_name}, '
                  f'но получено {main_page.get_ingredient_name_in_details_window()}')
@@ -47,7 +47,7 @@ class TestBasicFunctionality:
         main_page.click_on_ingredient_(1)
         main_page.click_cross_button_in_popup_window()
 
-        with allure.step(f'Проверяем что окно с деталями об ингредиенте закрылось'):
+        with allure.step(f'Проверяем закрытие окна с деталями об ингредиенте'):
             assert not main_page.find_popup_window(), \
                 'Всплывающее окно не закрылось после нажатия на крестик'
 
@@ -61,7 +61,7 @@ class TestBasicFunctionality:
         main_page.add_ingredient_to_order(ingredient_index)
         counter_past = main_page.get_ingredients_counter_(ingredient_index)
 
-        with allure.step(f'Проверяем что счетчик увеличился на {counter_increment}'):
+        with allure.step(f'Проверяем, что счетчик увеличился на {counter_increment}'):
             assert counter_past == counter_before + counter_increment, \
                 (f'Ожидалось увеличение счетчика на {counter_increment}, '
                  f'но фактическое изменение: {counter_past - counter_before}')
