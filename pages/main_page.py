@@ -6,6 +6,9 @@ from pages.base_page import BasePage
 
 
 class MainPage(BasePage):
+    def __init__(self, web_drv):
+        super().__init__(web_drv)
+        self.URL = URLs.MAIN_PAGE
 
     @allure.step('Открываем главную страницу')
     def open_main_page(self):
