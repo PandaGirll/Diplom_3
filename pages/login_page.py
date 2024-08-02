@@ -1,14 +1,14 @@
 import allure
 
-from pages.base_page import BasePage
-from locators.login_page_locators import LoginPageLocators
 from data import URLs
+from locators.login_page_locators import LoginPageLocators
+from pages.base_page import BasePage
 
 
 class LoginPage(BasePage):
-    # def __init__(self, web_driver):
-    #     super().__init__(web_driver)
-    #     self.URL = URLs.LOGIN_PAGE
+    def __init__(self, web_driver):
+        super().__init__(web_driver)
+        self.URL = URLs.LOGIN_PAGE
 
     @allure.step('Открываем страницу авторизации')
     def open_login_page(self):

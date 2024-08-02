@@ -15,7 +15,8 @@ class TestOrderFeedSection:
         order_feed_page.click_orders_by_index_(order_index)
         with allure.step('Проверяем открытие окна заказа'):
             assert order_feed_page.get_order_number_in_popup_window() == number_order, \
-                f'Ожидался номер заказа {number_order}, но получен {order_feed_page.get_order_number_in_popup_window()}'
+                (f'Ожидался номер заказа {number_order}, '
+                 f'но получен {order_feed_page.get_order_number_in_popup_window()}')
 
     @allure.title('Отображение заказов пользователя')
     @allure.description(
@@ -38,7 +39,7 @@ class TestOrderFeedSection:
         header.click_orders_feed_button()
         counter_before = order_feed_page.get_count_completed_orders_for_all_time()
         header.click_constructor_button()
-        add_order(main_page)
+        add_order(main_page, login_user)
         header.click_orders_feed_button()
         with allure.step('Проверяем увеличение счетчика «Выполнено за все время»'):
             assert order_feed_page.get_count_completed_orders_for_all_time() > counter_before, \
@@ -51,7 +52,7 @@ class TestOrderFeedSection:
         header.click_orders_feed_button()
         counter_before = order_feed_page.get_count_completed_orders_for_today()
         header.click_constructor_button()
-        add_order(main_page)
+        add_order(main_page, login_user)
         header.click_orders_feed_button()
         with allure.step('Проверяем увеличение счетчика «Выполнено за сегодня»'):
             assert order_feed_page.get_count_completed_orders_for_today() > counter_before, \
@@ -61,7 +62,7 @@ class TestOrderFeedSection:
     @allure.title('Появление номера заказа в разделе «В работе»')
     @allure.description('Проверка отображения номера заказа в разделе «В работе» после оформления заказа')
     def test_order_number_in_progress(self, login_user, header, main_page, order_feed_page):
-        new_order_number = add_order(main_page)
+        new_order_number = add_order(main_page, login_user)
         header.click_orders_feed_button()
         order_numbers_in_progress = order_feed_page.get_orders_number_in_progress()
 

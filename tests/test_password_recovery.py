@@ -1,5 +1,4 @@
 import allure
-import pytest
 
 
 @allure.suite('Восстановление пароля')

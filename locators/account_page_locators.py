@@ -6,4 +6,3 @@ class AccountPageLocators:
     ORDERS_HISTORY_MENU = By.LINK_TEXT, "История заказов"
     # Кнопка Выхода из аккаунта
     EXIT_FROM_ACCOUNT_BUTTON = By.XPATH, "//*[text()='Выход']"
-

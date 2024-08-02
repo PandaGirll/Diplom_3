@@ -1,8 +1,8 @@
 import allure
 
-from pages.base_page import BasePage
-from locators.reset_password_page_locators import ResetPasswordPageLocators
 from data import URLs
+from locators.reset_password_page_locators import ResetPasswordPageLocators
+from pages.base_page import BasePage
 
 
 class ResetPasswordPage(BasePage):

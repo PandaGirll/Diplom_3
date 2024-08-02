@@ -1,8 +1,8 @@
 import allure
 
-from pages.base_page import BasePage
-from locators.order_history_page_locators import AccountOrderHistoryPageLocators
 from data import URLs
+from locators.order_history_page_locators import AccountOrderHistoryPageLocators
+from pages.base_page import BasePage
 
 
 class OrderHistoryPage(BasePage):

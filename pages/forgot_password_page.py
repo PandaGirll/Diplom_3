@@ -1,8 +1,8 @@
 import allure
 
-from pages.base_page import BasePage
-from locators.forgot_password_page_locators import ForgotPasswordPageLocators
 from data import URLs
+from locators.forgot_password_page_locators import ForgotPasswordPageLocators
+from pages.base_page import BasePage
 
 
 class ForgotPasswordPage(BasePage):
@@ -10,7 +10,7 @@ class ForgotPasswordPage(BasePage):
         super().__init__(web_driver)
         self.URL = URLs.FORGOT_PASSWORD_PAGE
 
-    @allure.step('Открываем страницу восстановления пароля {self.URL}')
+    @allure.step('Открываем страницу восстановления пароля')
     def open_forgot_password_page(self):
         self.open_page(self.URL)
 

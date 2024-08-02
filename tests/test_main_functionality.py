@@ -1,8 +1,6 @@
 import allure
 import pytest
 
-from data import URLs
-
 
 @allure.suite('Основной функционал')
 class TestBasicFunctionality:
@@ -14,9 +12,10 @@ class TestBasicFunctionality:
         header.click_orders_feed_button()
         header.click_constructor_button()
 
-        with allure.step(f'Проверяем переход на url {URLs.MAIN_PAGE})'):
-            assert main_page.current_url == URLs.MAIN_PAGE, \
-                f'Ожидался переход на страницу {URLs.MAIN_PAGE}, но фактический URL: {main_page.current_url}'
+        with allure.step(f'Проверяем переход на url {main_page.URL})'):
+            assert main_page.current_url == main_page.URL, \
+                (f'Ожидался переход на страницу {main_page.URL}, '
+                 f'но фактический URL: {main_page.current_url}')
 
     @allure.title('Переход в Ленту заказов')
     @allure.description('Проверка перехода по клику на «Лента заказов»')
@@ -24,9 +23,10 @@ class TestBasicFunctionality:
         main_page.open_main_page()
         header.click_orders_feed_button()
 
-        with allure.step(f'Проверяем переход на url = {URLs.order_feed_page})'):
-            assert header.current_url == URLs.order_feed_page, \
-                f'Ожидался переход на страницу {URLs.order_feed_page}, но фактический URL: {header.current_url}'
+        with allure.step(f'Проверяем переход на url {order_feed_page.URL})'):
+            assert header.current_url == order_feed_page.URL, \
+                (f'Ожидался переход на страницу {order_feed_page.URL}, '
+                 f'но фактический URL: {header.current_url}')
 
     @allure.title('Отображение деталей ингредиента')
     @allure.description('Проверка появления всплывающего окна с деталями при клике на ингредиент')

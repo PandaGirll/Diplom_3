@@ -1,6 +1,6 @@
+from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as ec
 from selenium.webdriver.support.wait import WebDriverWait as DrvWait
-from selenium.webdriver.common.by import By
 from seletools.actions import drag_and_drop
 
 
@@ -32,11 +32,9 @@ class BasePage:
     def wait_visibility(self, locator, timeout=DEFAULT_TIMEOUT):
         DrvWait(self.web_driver, timeout).until(ec.visibility_of_element_located(locator))
 
-    def wait_invisibility(self, locator, timeout=DEFAULT_TIMEOUT):
-        DrvWait(self.web_driver, timeout).until(ec.invisibility_of_element(locator))
-
     def get_attribute(self, locator, attribute, timeout=DEFAULT_TIMEOUT):
-        return DrvWait(self.web_driver, timeout).until(ec.visibility_of_element_located(locator)).get_attribute(attribute)
+        return (DrvWait(self.web_driver, timeout).
+                until(ec.visibility_of_element_located(locator)).get_attribute(attribute))
 
     def is_element_exist(self, locator):
         try:
@@ -48,7 +46,7 @@ class BasePage:
     def get_element(self, locator):
         return self.web_driver.find_element(*locator)
 
-    def get_visible_element(self,  locator, timeout=DEFAULT_TIMEOUT):
+    def get_visible_element(self, locator, timeout=DEFAULT_TIMEOUT):
         return DrvWait(self.web_driver, timeout).until((ec.visibility_of_element_located(locator)))
 
     def get_visible_elements(self, locator, timeout=DEFAULT_TIMEOUT):
